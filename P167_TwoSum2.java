@@ -4,8 +4,8 @@ public class Solution {
      * @See Problem: https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/
      * Notice: it's 1-based, sorted array
      * 1. one-pass + binary search O(nlogn)
-     * 2. second-pass hash map, trading space for speed
-     * 3. one-pass, two cursor, one start from begining, the other from tail, similar to QuickSort
+     * 2. second-pass hash map, trading space for speed, hash construction takes time O(n)
+     * 3. one-pass, two cursor, one start from begining, the other from tail, Omega(n) similar to QuickSort
      * */
     public int[] twoSum(int[] numbers, int target) {
         int validMin    =   target  -   numbers[numbers.length - 1];
