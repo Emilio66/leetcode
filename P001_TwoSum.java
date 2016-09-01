@@ -1,12 +1,13 @@
 public class Solution {
     /**
+     * @See Problem: https://leetcode.com/problems/two-sum/ 
      * 1. basic solution: traverse the array twice, to find the pair
-     * 2. better: hashmap <number, index> + mapcopy(store duplicate data), query O(1)
-     * 3. optimized: O(n), use space to trade for time
+     * 2. better:  two hashmap, map<number, index> + mapcopy(store duplicate data), query O(1) 
+     * 3. optimized: O(n),  trade space for time, space cost depends on max - min
      * 
      * */
-     //solution 1 brute force 39ms after removing temporary variables & reducing unecessary traverse.
-		public int[] twoSum(int[] nums, int target) {
+     //solution 1 , 39ms
+    public int[] twoSum(int[] nums, int target) {
         for(int i = 0; i < nums.length; i++){
             //int a   =   nums[i];
             //target maybe negative, it's not right to skip them
@@ -27,9 +28,10 @@ public class Solution {
         
         return null;
     }
-     //solution 2
+    
+     //solution 2, 9 ms
      public int[] twoSum(int[] nums, int target) {
-        Map<Integer, Integer> map   =   new HashMap<Integer, Integer>((int)(nums.length * 1.34));//avoid remap
+        Map<Integer, Integer> map   	=   new HashMap<Integer, Integer>((int)(nums.length * 1.34)); //avoid remap
         Map<Integer, Integer> mapCopy   =   new HashMap<Integer, Integer>();    //not much duplicates
         for(int i = 0; i < nums.length; i++){
             if(!map.containsKey(nums[i]))
@@ -54,7 +56,7 @@ public class Solution {
         return null;
       }
      
-     //solution 3
+     //solution 3, 2ms
     public int[] twoSum(int[] nums, int target) {
         //use another array to store counterparts
         int min =   nums[0];
