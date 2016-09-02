@@ -11,7 +11,7 @@ public class Solution {
         if(s.length() != t.length())
             return false;
         
-        int[] srcArr  =   new int[26];  //key is letter, value is their occurrence s
+        int[] srcArr  =   new int[26];  //key is letter, value is their occurrences
         int[] tarArr  =   new int[26];
         
         for(char ch : s.toCharArray())
