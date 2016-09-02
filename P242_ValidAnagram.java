@@ -4,6 +4,7 @@ public class Solution {
      * // using hashSet to store all alphabets for each string doesn't work because of duplicate letters
      * 1. use an array with size 26 to store all letters & their occurrences
      * 2. optimize: use one Counter Array, one increase, the other decrease, if not zero, return false
+     * 3. Lambda way, fancy but costly 
      * */
     
     //solution 1, 4ms
@@ -53,4 +54,16 @@ public class Solution {
                 
         return true;
     }
+    
+    //solution3, 110 ms
+    /*public boolean isAnagram(String s, String t) {
+         if( s.length() != t.length())
+            return false;
+            
+        final int[] cnt = new int[26];
+        
+        s.chars().forEach(e -> cnt[e - 'a']++);
+        
+        return t.chars().filter(e -> --cnt[e - 'a'] < 0).limit(1).count() == 0; //negative means different
+    }*/
 }
