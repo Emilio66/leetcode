@@ -10,6 +10,7 @@ public class Solution {
         int len =   prices.length;
         if(len < 2)
             return 0;
+            
         //if the array are in a descending order, skip them
         while(buy < len - 1){
             if(prices[buy] < prices[buy + 1])
