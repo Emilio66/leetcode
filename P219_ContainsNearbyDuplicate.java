@@ -54,9 +54,33 @@ public class Solution {
         return false;
     }*/
     
+    //Simpler slide window, beats 79.08 %, (less window slide, better performance)
+    /*public boolean containsNearbyDuplicate(int[] nums, int k){
+        
+        if(nums.length <= k || nums.length < 20){
+            for(int i = 0; i < nums.length; i++){
+                for(int j = 1; j <= k && (i + j < nums.length); j++){
+                    if(nums[i] == nums[i+j])
+                        return true;
+                }
+            }
+            
+        }else{
+            Set<Integer> hashSet = new HashSet<Integer>((int)(k * 1.34));
+            for(int i = 0; i < nums.length; i++){
+                if(!hashSet.add(nums[i]))       //false when element exists
+                    return true;
+                if(i >= k)
+                    hashSet.remove(nums[i-k]);  //slide window step by step
+            }
+        }
+        
+        return false;
+    }*/
+    
     //Slide window, beats 99.18 %
     //Notice window's size large than nums.length
-    /*public boolean containsNearbyDuplicate(int[] nums, int k){
+    public boolean containsNearbyDuplicate(int[] nums, int k){
         
         if(nums.length <= k || nums.length < 20){
             
@@ -93,29 +117,5 @@ public class Solution {
         }
         
         return false;
-    }*/
-    
-    //Simpler slide window, beats 79.08 %, bad server..
-    public boolean containsNearbyDuplicate(int[] nums, int k){
-        
-        if(nums.length <= k || nums.length < 20){
-            for(int i = 0; i < nums.length; i++){
-                for(int j = 1; j <= k && (i + j < nums.length); j++){
-                    if(nums[i] == nums[i+j])
-                        return true;
-                }
-            }
-            
-        }else{
-            Set<Integer> hashSet = new HashSet<Integer>((int)(k * 1.34));
-            for(int i = 0; i < nums.length; i++){
-                if(!hashSet.add(nums[i]))       //false when element exists
-                    return true;
-                if(i >= k)
-                    hashSet.remove(nums[i-k]);  //slide window step by step
-            }
-        }
-        
-        return false;
-    }
+    }       
 }
