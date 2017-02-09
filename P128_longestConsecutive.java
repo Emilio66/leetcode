@@ -54,6 +54,7 @@ public class Solution {
         return max;
     }
     
+    //Union Find Slides: https://www.cs.princeton.edu/~rs/AlgsDS07/01UnionFind.pdf
     class UnionFind{
         Map<Integer, Integer> parent = new HashMap<Integer, Integer>();
         Map<Integer, Integer> size = new HashMap<Integer, Integer>();
