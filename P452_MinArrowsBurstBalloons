@@ -1,0 +1,38 @@
+public class Solution {
+    /**
+     * Greedy
+     * 1. Sorting start point
+     * 2. if not overlapped, arrows + 1; 
+     *      set nearest end point as the overlapped terminal
+     * Beats 80%
+     **/
+    public int findMinArrowShots(int[][] points) {
+       if(points.length < 1)
+            return points.length;
+        Arrays.sort(points, new Comparator<int[]>() {
+            @Override
+            public int compare(int[] p1, int[] p2) {
+                if(p1[0] == p2[0])
+                    return p1[1] - p2[1];
+                return p1[0] - p2[0];
+            }
+        });
+
+        int end = points[0][1];
+        int arrows = 1;
+        for (int i = 1; i < points.length; i++) {
+            //not overlapped
+            if (points[i][0] > end){
+                arrows ++;
+                end = points[i][1];
+
+            }
+            //end shrink if overlapped, choose the shortest end
+            else if(points[i][1] < end){
+                end = points[i][1];
+            }
+        }
+
+        return arrows;
+    }
+}
