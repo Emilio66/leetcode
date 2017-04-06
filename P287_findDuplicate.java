@@ -81,6 +81,13 @@ public class Solution {
     
     //Floyd Circle based, beats 57.6 %
     //Two pointer: one fast, one slow, the second meet at duplicate
+    //Proof:
+    // Suppose the first meet at the point d unit far from the entry point
+    // Say L is the distance between start and entry, d is the first meet point, C is the perimeter
+    // 2 * (L + d) = L + d + k*C 
+    //=> L + d = k*C
+    //=> L = (k-1)*C + (C - d)
+    //=> The second meet point will be the entry point since it walks C-d from the first meet point
     public int findDuplicate(int[] nums) {
         int slow = nums[0];
         int fast = nums[slow]; //two times fast in speed
