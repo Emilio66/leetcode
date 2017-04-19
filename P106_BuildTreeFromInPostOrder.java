@@ -67,26 +67,29 @@ public class Solution {
         return root;
     }*/
     
+    //NOTICE: end should be inclusive!!!
     public int find(int x, int[] data, int start, int end){
         if(end > start)
-            for(int i = start; i < end; i++)
+            for(int i = start; i <= end; i++)
                 if(data[i] == x) return i;
         return -1;
     }
     
     private TreeNode _buildTree(int[] inorder, int iBegin, int iEnd, int[] postorder, int pBegin, int pEnd){
-        if(iBegin < iEnd) return null;
+        if(iBegin > iEnd) return null;
         if(iBegin == iEnd) return new TreeNode(inorder[iEnd]);
         int rootVal = postorder[pEnd];
         int pos = find(rootVal, inorder, iBegin, iEnd);
         
         TreeNode root = new TreeNode(rootVal);
-        root.left = _buildTree(inorder, iBegin, pos-1, postorder, pBegin, pos-1);
-        root.right= _buildTree(inorder, pos+1, iEnd, postorder, pos, pEnd-1);
+        //通过inorder确定左右子树区间大小，结合postorder的根节点确定区间起/终点，
+        root.left = _buildTree(inorder, iBegin, pos-1, postorder, pBegin, pBegin+pos-iBegin-1);
+        root.right= _buildTree(inorder, pos+1, iEnd, postorder, pBegin+pos-iBegin, pEnd-1);
         
         return root;
     }
     
+    //postorder decide root, inorder clarify subtrees's size
     public TreeNode buildTree(int[] inorder, int[] postorder) {
         if(inorder == null || inorder.length == 0 || inorder.length != postorder.length) return null;
         if(inorder.length == 1) return new TreeNode(inorder[0]);
